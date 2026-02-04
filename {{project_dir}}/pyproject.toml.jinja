@@ -39,13 +39,26 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.3.5",
-    "pytest-mock>=3.14.0",
-    "tox>=4.25.0",
+    "pytest>=9.0.2",
+    "pytest-mock>=3.15.1",
+    "tox>=4.34.1",
+    "tox-uv>=1.29.0",
     "bump2version>=1.0.1",
-    "ruff>=0.8.0",
-    "mypy>=1.14.0",
-    "pre-commit>=4.0.0",
+    "ruff>=0.15.0",
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-mock>=3.15.1",
+    "tox>=4.34.1",
+    "tox-uv>=1.29.0",
+    "bump2version>=1.0.1",
+    "ruff>=0.15.0",
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
 ]
 
 [project.urls]
@@ -57,17 +70,6 @@ Homepage =  "{{base_url}}"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[dependency-groups]
-dev = [
-    "pytest>=8.3.5",
-    "pytest-mock>=3.14.0",
-    "tox>=4.25.0",
-    "bump2version>=1.0.1",
-    "ruff>=0.8.0",
-    "mypy>=1.14.0",
-    "pre-commit>=4.0.0",
-]
 
 [tool.ruff]
 line-length = 88
