@@ -10,17 +10,17 @@ project_package:
 project_name:
   type: str
   help: Human-readable project name
-  default: "[[ project_package | replace('_', ' ') | title ]]"
+  default: "{{ project_package | replace('_', ' ') | title }}"
 
 project_dir:
   type: str
   help: Project directory name
-  default: "[[ project_package | replace('_', '-') ]]"
+  default: "{{ project_package | replace('_', '-') }}"
 
 executable_name:
   type: str
   help: CLI executable name
-  default: "[[ project_dir ]]"
+  default: "{{ project_dir }}"
 
 author:
   type: str
@@ -40,7 +40,7 @@ description:
 base_url:
   type: str
   help: Project repository URL
-  default: "https://github.com/hoelzl/[[ project_dir ]]/"
+  default: "https://github.com/hoelzl/{{ project_dir }}/"
 
 cli:
   type: str
@@ -69,6 +69,7 @@ _exclude:
   - .idea
   - .vscode
   - /README.md  # root README only (template has its own in {{project_dir}})
+  - /CLAUDE.md  # root CLAUDE.md only (template has its own in {{project_dir}})
   - cookiecutter.json
   - cookiecutter-to-copier-migration-guide.md
 

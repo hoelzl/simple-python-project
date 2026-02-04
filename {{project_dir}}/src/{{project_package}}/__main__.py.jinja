@@ -1,9 +1,10 @@
-from .functions import say_hi
-from . import __version__
+{% if cli == "typer" -%}
+from typing import Annotated
 
-{% if cli == "typer" +%}
 import typer
-from typing_extensions import Annotated
+
+from . import __version__
+from .functions import say_hi
 
 
 def version_callback(value: bool):
@@ -30,9 +31,11 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-{% elif cli == "click" +%}
+{% elif cli == "click" -%}
 import click
+
+from . import __version__
+from .functions import say_hi
 
 
 @click.command()
@@ -44,29 +47,35 @@ def main(name):
 
 if __name__ == "__main__":
     main()
-
-{% elif cli == "argparse" +%}
+{% elif cli == "argparse" -%}
 import argparse
+
+from .functions import say_hi
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="{{project_package.replace('_', '-')}}",
-                                     description="{{description}}",
-                                     epilog="Have fun!", )
-    parser.add_argument("-n", "--name", default="world",
-                        help="the name of the person to greet")
+    parser = argparse.ArgumentParser(
+        prog="{{project_package.replace('_', '-')}}",
+        description="{{description}}",
+        epilog="Have fun!",
+    )
+    parser.add_argument(
+        "-n", "--name", default="world", help="the name of the person to greet"
+    )
     args = parser.parse_args()
     say_hi(args.name)
 
 
 if __name__ == "__main__":
     main()
+{% else -%}
+from .functions import say_hi
 
-{% else +%}
 
 def main():
     say_hi()
 
+
 if __name__ == "__main__":
     main()
-{% endif +%}
+{% endif -%}
