@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(copier copy:*)",
+      "Bash(copier:*)",
+      "WebFetch(domain:copier.readthedocs.io)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run:*)",
+      "Bash(.venv-pip/Scripts/python -m pip install:*)",
+      "Bash(.venv-pip/Scripts/pytest)"
+    ]
+  }
+}

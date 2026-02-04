@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(copier copy:*)",
+      "Bash(if exist \"C:\\\\Users\\\\tc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\test-uv-project\" rmdir /s /q \"C:\\\\Users\\\\tc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\test-uv-project\")",
+      "WebFetch(domain:copier.readthedocs.io)",
+      "Bash(copier:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run:*)",
+      "Bash(.venv-pip/Scripts/python -m pip install:*)",
+      "Bash(.venv-pip/Scripts/pytest)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\tc\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\test-output\" -ErrorAction SilentlyContinue)",
+      "Bash(dir /b /s \"C:\\\\Users\\\\tc\\\\Programming\\\\Python\\\\Projects\\\\simple-python-project\")"
+    ]
+  }
+}
