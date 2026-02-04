@@ -82,6 +82,7 @@ _message_after_copy: |
   Next steps (using uv - recommended):
     cd {{ project_dir }}
     uv sync --group dev
+    uv run pre-commit install  # install git hooks
     uv run pytest  # verify installation
 
   Alternative (using pip):
@@ -89,5 +90,6 @@ _message_after_copy: |
     python -m venv .venv
     source .venv/bin/activate  # or .venv\Scripts\activate on Windows
     pip install -e ".[dev]"
+    pre-commit install
 
   Install uv: https://docs.astral.sh/uv/getting-started/installation/
