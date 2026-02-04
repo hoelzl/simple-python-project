@@ -1,0 +1,64 @@
+[build-system]
+requires = [
+    "setuptools>=80.4.0",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{project_package}}"
+version = "0.0.1"
+description = "{{description}}"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    { name = "{{author}}", email = "{{email}}" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+{% if cli == "click" %}
+    "click>=8.2",
+{% elif cli == "typer" %}
+    "typer~=0.15.3",
+    "click~=8.1.0", # Typer 0.15.x does not work with newer versions of click
+{% endif %}
+{% if default_dependencies %}
+    "attrs>=25.3",
+    "cattrs>=24.1",
+    "platformdirs>=4.3.8",
+{% endif %}
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-mock>=3.14.0",
+    "tox>=4.25.0",
+    "bump2version>=1.0.1",
+]
+
+[project.urls]
+Homepage =  "{{base_url}}"
+"Bug Tracker" = "{{base_url}}issues"
+
+[project.scripts]
+{{executable_name}} = "{{project_package}}.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-mock>=3.14.0",
+    "tox>=4.25.0",
+    "bump2version>=1.0.1",
+]

@@ -1,0 +1,93 @@
+_min_copier_version: "9.0.0"
+
+# Questions
+project_package:
+  type: str
+  help: Python package name (use underscores, e.g., my_awesome_project)
+  default: my_awesome_project
+  validator: "{% if not project_package.isidentifier() %}Must be a valid Python identifier{% endif %}"
+
+project_name:
+  type: str
+  help: Human-readable project name
+  default: "[[ project_package | replace('_', ' ') | title ]]"
+
+project_dir:
+  type: str
+  help: Project directory name
+  default: "[[ project_package | replace('_', '-') ]]"
+
+executable_name:
+  type: str
+  help: CLI executable name
+  default: "[[ project_dir ]]"
+
+author:
+  type: str
+  help: Author name
+  default: "Dr. Matthias Hölzl"
+
+email:
+  type: str
+  help: Author email
+  default: tc@xantira.com
+
+description:
+  type: str
+  help: Short project description
+  default: An awesome project!
+
+base_url:
+  type: str
+  help: Project repository URL
+  default: "https://github.com/hoelzl/[[ project_dir ]]/"
+
+cli:
+  type: str
+  help: CLI framework to use
+  choices:
+    - none
+    - argparse
+    - click
+    - typer
+  default: none
+
+default_dependencies:
+  type: bool
+  help: Include default dependencies (attrs, cattrs, platformdirs)?
+  default: false
+
+# Settings
+_exclude:
+  - copier.yml
+  - copier.yaml
+  - "*.pyc"
+  - __pycache__
+  - .git
+  - /.gitignore  # root gitignore only (template has its own in {{project_dir}})
+  - .claude
+  - .idea
+  - .vscode
+  - /README.md  # root README only (template has its own in {{project_dir}})
+  - cookiecutter.json
+  - cookiecutter-to-copier-migration-guide.md
+
+_tasks:
+  - command: "git init"
+
+_message_after_copy: |
+
+  Project "{{ project_name }}" created successfully!
+
+  Next steps (using uv - recommended):
+    cd {{ project_dir }}
+    uv sync --group dev
+    uv run pytest  # verify installation
+
+  Alternative (using pip):
+    cd {{ project_dir }}
+    python -m venv .venv
+    source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+    pip install -e ".[dev]"
+
+  Install uv: https://docs.astral.sh/uv/getting-started/installation/
