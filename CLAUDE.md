@@ -9,7 +9,7 @@ This is a **Copier template** for generating simple Python projects. It is NOT a
 ## Template Structure
 
 - `copier.yml` - Template configuration and user prompts
-- `{{project_dir}}/` - Template files that get copied to generated projects
+- `project/` - Template files that get copied to generated projects (via `_subdirectory` setting)
   - `src/{{project_package}}/` - Source code templates
   - `tests/` - Test templates
   - `pyproject.toml.jinja` - Project configuration template

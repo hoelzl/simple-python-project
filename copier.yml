@@ -58,20 +58,12 @@ default_dependencies:
   default: false
 
 # Settings
+_subdirectory: project
+
 _exclude:
-  - copier.yml
-  - copier.yaml
   - "*.pyc"
   - __pycache__
   - .git
-  - /.gitignore  # root gitignore only (template has its own in {{project_dir}})
-  - .claude
-  - .idea
-  - .vscode
-  - /README.md  # root README only (template has its own in {{project_dir}})
-  - /CLAUDE.md  # root CLAUDE.md only (template has its own in {{project_dir}})
-  - cookiecutter.json
-  - cookiecutter-to-copier-migration-guide.md
 
 _tasks:
   - command: "git init"
@@ -81,13 +73,11 @@ _message_after_copy: |
   Project "{{ project_name }}" created successfully!
 
   Next steps (using uv - recommended):
-    cd {{ project_dir }}
     uv sync --group dev
     uv run pre-commit install  # install git hooks
     uv run pytest  # verify installation
 
   Alternative (using pip):
-    cd {{ project_dir }}
     python -m venv .venv
     source .venv/bin/activate  # or .venv\Scripts\activate on Windows
     pip install -e ".[dev]"
